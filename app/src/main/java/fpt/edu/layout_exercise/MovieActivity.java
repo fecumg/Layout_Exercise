@@ -5,8 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.transition.AutoTransition;
-import android.transition.ChangeBounds;
-import android.transition.ChangeTransform;
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.ViewGroup;
@@ -38,7 +36,8 @@ public class MovieActivity extends AppCompatActivity {
 
         this.collapsePlot(tvPlot, plot);
 
-        tvPlot.setOnClickListener(view -> this.expandAndCollapsePlot(tvPlot, plot));
+        llMovieInfo = findViewById(R.id.llMovieInfo);
+        tvPlot.setOnClickListener(view -> this.expandAndCollapsePlot(tvPlot, plot, llMovieInfo));
 
 //        open trailer modal dialog
         btnPlay = findViewById(R.id.btnPlay);
@@ -59,13 +58,12 @@ public class MovieActivity extends AppCompatActivity {
         textView.setText(str);
     }
 
-    private void expandAndCollapsePlot(TextView textView, String str) {
+    private void expandAndCollapsePlot(TextView textView, String str, ViewGroup viewGroup) {
         Transition transition = new AutoTransition();
         transition.setDuration(300);
 
-//        transition
-        llMovieInfo = findViewById(R.id.llMovieInfo);
-        TransitionManager.beginDelayedTransition(llMovieInfo, transition);
+//        begin transition
+        TransitionManager.beginDelayedTransition(viewGroup, transition);
 
         if (textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
             this.expandPlot(textView, str);
@@ -80,10 +78,10 @@ public class MovieActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_trailer);
         dialog.show();
 
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        dialog.getWindow().setAttributes(lp);
-        final VideoView videoview = (VideoView) dialog.findViewById(R.id.vvTrailer);
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        dialog.getWindow().setAttributes(layoutParams);
+        VideoView videoview = dialog.findViewById(R.id.vvTrailer);
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.angel_has_fallen_trailer_2019);
         videoview.setVideoURI(uri);
         videoview.start();
