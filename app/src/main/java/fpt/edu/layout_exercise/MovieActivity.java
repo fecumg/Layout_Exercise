@@ -4,7 +4,12 @@ import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Window;
+import android.transition.AutoTransition;
+import android.transition.ChangeBounds;
+import android.transition.ChangeTransform;
+import android.transition.Transition;
+import android.transition.TransitionManager;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,12 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MovieActivity extends AppCompatActivity {
 
-    static final int COLLAPSED_PLOT_END_INDEX = 235;
+    static final int COLLAPSED_PLOT_LENGTH = 235;
     static final String COLLAPSED_PLOT_SUFFIX = " More";
     static final String COLLAPSED_PLOT_SUFFIX_COLOR = "#a33747";
 
     TextView tvPlot;
     Button btnPlay;
+    ViewGroup llMovieInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +38,7 @@ public class MovieActivity extends AppCompatActivity {
 
         this.collapsePlot(tvPlot, plot);
 
-        tvPlot.setOnClickListener(view -> {
-            this.expandAndCollapsePlot(tvPlot, plot);
-        });
+        tvPlot.setOnClickListener(view -> this.expandAndCollapsePlot(tvPlot, plot));
 
 //        open trailer modal dialog
         btnPlay = findViewById(R.id.btnPlay);
@@ -42,9 +46,7 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void collapsePlot(TextView textView, String str) {
-        tvPlot.setText(str);
-
-        CharSequence collapsedPlotCharSequence = textView.getText().subSequence(0, COLLAPSED_PLOT_END_INDEX);
+        CharSequence collapsedPlotCharSequence = str.subSequence(0, COLLAPSED_PLOT_LENGTH);
 
 //        suffix with different color
         String suffix = "<font color=" + COLLAPSED_PLOT_SUFFIX_COLOR + ">" + COLLAPSED_PLOT_SUFFIX + "</font>";
@@ -58,6 +60,13 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void expandAndCollapsePlot(TextView textView, String str) {
+        Transition transition = new AutoTransition();
+        transition.setDuration(300);
+
+//        transition
+        llMovieInfo = findViewById(R.id.llMovieInfo);
+        TransitionManager.beginDelayedTransition(llMovieInfo, transition);
+
         if (textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
             this.expandPlot(textView, str);
         } else {
@@ -79,5 +88,4 @@ public class MovieActivity extends AppCompatActivity {
         videoview.setVideoURI(uri);
         videoview.start();
     }
-
 }
