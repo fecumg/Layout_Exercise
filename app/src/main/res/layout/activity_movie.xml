@@ -139,6 +139,22 @@
                     android:textSize="12sp"
                     android:textColor="#8a8b90"
                     android:layout_marginBottom="10dp"/>
+
+                <RelativeLayout
+                    android:id="@+id/rlHide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvHide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hide"
+                        android:textColor="#d8d9de"
+                        android:textSize="12sp"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout

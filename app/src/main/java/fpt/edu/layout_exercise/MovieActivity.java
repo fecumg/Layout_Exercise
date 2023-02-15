@@ -7,6 +7,7 @@ import android.text.Html;
 import android.transition.AutoTransition;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,27 +25,34 @@ public class MovieActivity extends AppCompatActivity {
     TextView tvPlot;
     Button btnPlay;
     ViewGroup llMovieInfo;
+    TextView tvHide;
+    ViewGroup rlHide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
+        tvHide = findViewById(R.id.tvHide);
+        rlHide = findViewById(R.id.rlHide);
+        llMovieInfo = findViewById(R.id.llMovieInfo);
+
 //        collapse and expand plot summary
         tvPlot = findViewById(R.id.tvPlot);
         String plot = getString(R.string.plot_summary);
 
-        this.collapsePlot(tvPlot, plot);
+        this.collapsePlotWithoutAnimation(tvPlot, plot, rlHide);
 
-        llMovieInfo = findViewById(R.id.llMovieInfo);
-        tvPlot.setOnClickListener(view -> this.expandAndCollapsePlot(tvPlot, plot, llMovieInfo));
+        tvHide.setOnClickListener(view -> this.collapsePlot(tvPlot, plot, llMovieInfo, rlHide));
+
+        tvPlot.setOnClickListener(view -> this.expandPlot(tvPlot, plot, llMovieInfo, rlHide));
 
 //        open trailer modal dialog
         btnPlay = findViewById(R.id.btnPlay);
         btnPlay.setOnClickListener(view -> openDialog());
     }
 
-    private void collapsePlot(TextView textView, String str) {
+    private void collapsePlotWithoutAnimation(TextView textView, String str, ViewGroup hideTriggerViewGroup) {
         CharSequence collapsedPlotCharSequence = str.subSequence(0, COLLAPSED_PLOT_LENGTH);
 
 //        suffix with different color
@@ -52,25 +60,33 @@ public class MovieActivity extends AppCompatActivity {
         String text = collapsedPlotCharSequence + "..." + suffix;
 
         textView.setText(Html.fromHtml(text));
+
+        hideTriggerViewGroup.setVisibility(View.GONE);
     }
 
-    private void expandPlot(TextView textView, String str) {
-        textView.setText(str);
+    private void collapsePlot(TextView textView, String str, ViewGroup TransitionViewGroup, ViewGroup hideTriggerViewGroup) {
+        if (! textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
+            this.beginTransition(TransitionViewGroup);
+            this.collapsePlotWithoutAnimation(textView, str, hideTriggerViewGroup);
+        }
     }
 
-    private void expandAndCollapsePlot(TextView textView, String str, ViewGroup viewGroup) {
+    private void expandPlot(TextView textView, String str, ViewGroup TransitionViewGroup, ViewGroup hideTriggerViewGroup) {
+        if (textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
+            this.beginTransition(TransitionViewGroup);
+            textView.setText(str);
+            hideTriggerViewGroup.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void beginTransition(ViewGroup TransitionViewGroup) {
         Transition transition = new AutoTransition();
         transition.setDuration(300);
 
 //        begin transition
-        TransitionManager.beginDelayedTransition(viewGroup, transition);
-
-        if (textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
-            this.expandPlot(textView, str);
-        } else {
-            this.collapsePlot(textView, str);
-        }
+        TransitionManager.beginDelayedTransition(TransitionViewGroup, transition);
     }
+
 
     private void openDialog() {
         Dialog dialog = new Dialog(MovieActivity.this);
