@@ -26,9 +26,9 @@
             android:background="@drawable/icon_play"
             android:contentDescription="Play trailer" />
 
-        <TextView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/poster_bottom_edge"
             android:text="1h 20m"

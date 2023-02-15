@@ -87,7 +87,6 @@ public class MovieActivity extends AppCompatActivity {
         TransitionManager.beginDelayedTransition(TransitionViewGroup, transition);
     }
 
-
     private void openDialog() {
         Dialog dialog = new Dialog(MovieActivity.this);
         dialog.setCancelable(true);
