@@ -39,18 +39,19 @@ public class MovieActivity extends AppCompatActivity {
         rlHide = findViewById(R.id.rlHide);
         llMovieInfo = findViewById(R.id.llMovieInfo);
 
-//        collapse and expand plot summary
         tvPlot = findViewById(R.id.tvPlot);
         String plot = tvPlot.getText().toString();
 
+//        collapse plot summary on creating
         this.collapsePlotWithoutAnimation(tvPlot, plot, rlHide);
 
+//        collapse and expand plot summary on command
         tvHide.setOnClickListener(view -> this.collapsePlot(tvPlot, plot, llMovieInfo, rlHide));
         tvPlot.setOnClickListener(view -> this.expandPlot(tvPlot, plot, llMovieInfo, rlHide));
 
-//        open trailer modal dialog
+//        open trailer modal dialog on command
         btnPlay = findViewById(R.id.btnPlay);
-        btnPlay.setOnClickListener(view -> openDialog());
+        btnPlay.setOnClickListener(view -> openTrailerDialog());
     }
 
     private void collapsePlotWithoutAnimation(TextView textView, String str, ViewGroup hideTriggerViewGroup) {
@@ -88,7 +89,7 @@ public class MovieActivity extends AppCompatActivity {
         TransitionManager.beginDelayedTransition(TransitionViewGroup, transition);
     }
 
-    private void openDialog() {
+    private void openTrailerDialog() {
         Dialog dialog = new Dialog(MovieActivity.this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_trailer);
