@@ -7,8 +7,10 @@ import android.text.Html;
 import android.transition.AutoTransition;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,12 +41,11 @@ public class MovieActivity extends AppCompatActivity {
 
 //        collapse and expand plot summary
         tvPlot = findViewById(R.id.tvPlot);
-        String plot = getString(R.string.plot_summary);
+        String plot = tvPlot.getText().toString();
 
         this.collapsePlotWithoutAnimation(tvPlot, plot, rlHide);
 
         tvHide.setOnClickListener(view -> this.collapsePlot(tvPlot, plot, llMovieInfo, rlHide));
-
         tvPlot.setOnClickListener(view -> this.expandPlot(tvPlot, plot, llMovieInfo, rlHide));
 
 //        open trailer modal dialog
