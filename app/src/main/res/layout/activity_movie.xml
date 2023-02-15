@@ -259,16 +259,9 @@
                                 android:background="@color/white"
                                 android:scaleType="centerCrop" />
                         </androidx.cardview.widget.CardView>
-
                     </LinearLayout>
                 </HorizontalScrollView>
-
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
-
-    
-
 </LinearLayout>
