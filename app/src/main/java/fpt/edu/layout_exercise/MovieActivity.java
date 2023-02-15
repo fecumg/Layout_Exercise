@@ -21,8 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MovieActivity extends AppCompatActivity {
 
     static final int COLLAPSED_PLOT_LENGTH = 235;
-    static final String COLLAPSED_PLOT_SUFFIX = " More";
-    static final String COLLAPSED_PLOT_SUFFIX_COLOR = "#a33747";
+    static final String COLLAPSED_PLOT_END = " More";
+    static final String COLLAPSED_PLOT_END_COLOR = "#a33747";
 
     TextView tvPlot;
     Button btnPlay;
@@ -56,8 +56,8 @@ public class MovieActivity extends AppCompatActivity {
     private void collapsePlotWithoutAnimation(TextView textView, String str, ViewGroup hideTriggerViewGroup) {
         CharSequence collapsedPlotCharSequence = str.subSequence(0, COLLAPSED_PLOT_LENGTH);
 
-//        suffix with different color
-        String suffix = "<font color=" + COLLAPSED_PLOT_SUFFIX_COLOR + ">" + COLLAPSED_PLOT_SUFFIX + "</font>";
+//        end word with different color
+        String suffix = "<font color=" + COLLAPSED_PLOT_END_COLOR + ">" + COLLAPSED_PLOT_END + "</font>";
         String text = collapsedPlotCharSequence + "..." + suffix;
 
         textView.setText(Html.fromHtml(text));
@@ -66,14 +66,14 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void collapsePlot(TextView textView, String str, ViewGroup TransitionViewGroup, ViewGroup hideTriggerViewGroup) {
-        if (! textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
+        if (! textView.getText().toString().endsWith(COLLAPSED_PLOT_END)) {
             this.beginTransition(TransitionViewGroup);
             this.collapsePlotWithoutAnimation(textView, str, hideTriggerViewGroup);
         }
     }
 
     private void expandPlot(TextView textView, String str, ViewGroup TransitionViewGroup, ViewGroup hideTriggerViewGroup) {
-        if (textView.getText().toString().endsWith(COLLAPSED_PLOT_SUFFIX)) {
+        if (textView.getText().toString().endsWith(COLLAPSED_PLOT_END)) {
             this.beginTransition(TransitionViewGroup);
             textView.setText(str);
             hideTriggerViewGroup.setVisibility(View.VISIBLE);
