@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="100dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        app:startIconDrawable="@drawable/icon_email_foreground"
+        app:startIconTint="@color/main_color"
+        android:textColorHint="@color/main_color"
+        app:hintTextColor="@color/main_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="20dp"
+            android:backgroundTint="@color/main_color"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        app:startIconDrawable="@drawable/icon_key_foreground"
+        app:startIconTint="@color/main_color"
+        android:textColorHint="@color/main_color"
+        app:hintTextColor="@color/main_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="20dp"
+            android:backgroundTint="@color/main_color"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:paddingBottom="1dp">
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:button="@drawable/button_remember_me"
+            android:paddingHorizontal="5dp"
+            android:text="remember me"
+            android:textColor="#7560e8" />
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/button_remember_me"
+            android:gravity="right"
+            android:text="forgot password?"
+            android:textColor="#7560e8" />
+    </LinearLayout>
+
+</LinearLayout>

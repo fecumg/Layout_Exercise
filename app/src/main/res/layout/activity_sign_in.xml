@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingHorizontal="55dp"
     android:paddingVertical="60dp">
 
@@ -22,93 +23,10 @@
         android:textColor="#7560e8"
         android:layout_below="@+id/tvTitle"/>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <include layout="@layout/form_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:paddingBottom="100dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#7560e8"
-            android:orientation="horizontal"
-            android:paddingBottom="1dp"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/icon_background"
-                android:foreground="@drawable/icon_email_foreground" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:hint="username"
-                android:textColor="#7560e8"
-                android:textColorHint="#B27560E8"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#7560e8"
-            android:orientation="horizontal"
-            android:paddingBottom="1dp"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:background="@drawable/icon_background"
-                android:foreground="@drawable/icon_key_foreground" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:hint="password"
-                android:textColor="#7560e8"
-                android:textColorHint="#B27560E8"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="bottom"
-            android:paddingBottom="1dp">
-
-            <CheckBox
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:layout_weight="1"
-                android:button="@drawable/button_remember_me"
-                android:paddingHorizontal="5dp"
-                android:text="remember me"
-                android:textColor="#7560e8" />
-
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@drawable/button_remember_me"
-                android:gravity="right"
-                android:text="forgot password?"
-                android:textColor="#7560e8" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_centerInParent="true" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -116,14 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <Button
+        <fpt.edu.layout_exercise.CustomSubmitButton
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/button_submit"
-            android:text="Sign In"
-            android:textColor="#efdbfc"
-            android:textAllCaps="false"
-            android:textSize="17sp"/>
+            android:layout_height="wrap_content"
+            app:text="Sign In"/>
 
         <TextView
             android:layout_width="match_parent"
