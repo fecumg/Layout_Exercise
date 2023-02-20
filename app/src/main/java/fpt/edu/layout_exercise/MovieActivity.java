@@ -7,16 +7,19 @@ import android.text.Html;
 import android.transition.AutoTransition;
 import android.transition.Transition;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -29,6 +32,8 @@ public class MovieActivity extends AppCompatActivity {
     ViewGroup llMovieInfo;
     TextView tvHide;
     ViewGroup rlHide;
+    RecyclerView rvActor;
+    List<Integer> images = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,23 @@ public class MovieActivity extends AppCompatActivity {
 //        open trailer modal dialog on command
         btnPlay = findViewById(R.id.btnPlay);
         btnPlay.setOnClickListener(view -> openTrailerDialog());
+
+//        actor list
+        rvActor = findViewById(R.id.rvActor);
+        this.setActorImages();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rvActor.setLayoutManager(layoutManager);
+
+        ActorAdapter actorAdapter = new ActorAdapter(this, images);
+        rvActor.setAdapter(actorAdapter);
+    }
+
+    private void setActorImages() {
+        images.add(R.drawable.gerard_butler);
+        images.add(R.drawable.morgan_freeman);
+        images.add(R.drawable.danny_huston);
+        images.add(R.drawable.piper_perabo);
+        images.add(R.drawable.nick_nolte);
     }
 
     private void collapsePlotWithoutAnimation(TextView textView, String str, ViewGroup hideTriggerViewGroup) {
