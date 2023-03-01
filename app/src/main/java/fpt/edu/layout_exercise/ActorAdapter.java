@@ -23,7 +23,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ItemHolder> 
     @NonNull
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = activity.getLayoutInflater().inflate(R.layout.actor_item, parent, false);
+        View itemView = activity.getLayoutInflater().inflate(R.layout.recycler_item_actor, parent, false);
         return new ItemHolder(itemView);
     }
 

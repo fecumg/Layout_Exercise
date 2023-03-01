@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/poster_bottom_edge"
+            android:background="@drawable/edge_bottom_blur"
             android:text="1h 20m"
             android:textSize="12sp"
             android:textColor="#BCBDC5"
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_rounded"
+                    android:background="@drawable/background_rounded"
                     android:text="18+"
                     android:textColor="#d8d9de"
                     android:paddingVertical="5dp"
@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_rounded"
+                    android:background="@drawable/background_rounded"
                     android:text="Action"
                     android:textColor="#d8d9de"
                     android:paddingVertical="5dp"
@@ -80,7 +80,7 @@
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_rounded"
+                    android:background="@drawable/background_rounded"
                     android:paddingVertical="5dp"
                     android:paddingHorizontal="12dp"
                     android:layout_marginEnd="10dp"
@@ -142,16 +142,16 @@
                     android:layout_marginBottom="10dp"/>
 
                 <RelativeLayout
-                    android:id="@+id/rlHide"
+                    android:id="@+id/rlLess"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/tvHide"
+                        android:id="@+id/tvLess"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hide"
+                        android:text="Less"
                         android:textColor="#d8d9de"
                         android:textSize="12sp"
                         android:layout_alignParentEnd="true"/>

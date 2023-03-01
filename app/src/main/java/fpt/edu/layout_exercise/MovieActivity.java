@@ -30,8 +30,8 @@ public class MovieActivity extends AppCompatActivity {
     TextView tvPlot;
     Button btnPlay;
     ViewGroup llMovieInfo;
-    TextView tvHide;
-    ViewGroup rlHide;
+    TextView tvLess;
+    ViewGroup rlLess;
     RecyclerView rvActor;
     List<Integer> images = new ArrayList<>();
 
@@ -40,19 +40,19 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-        tvHide = findViewById(R.id.tvHide);
-        rlHide = findViewById(R.id.rlHide);
+        tvLess = findViewById(R.id.tvLess);
+        rlLess = findViewById(R.id.rlLess);
         llMovieInfo = findViewById(R.id.llMovieInfo);
 
         tvPlot = findViewById(R.id.tvPlot);
         String plot = tvPlot.getText().toString();
 
 //        collapse plot summary on creating
-        this.collapsePlotWithoutAnimation(tvPlot, plot, rlHide);
+        this.collapsePlotWithoutAnimation(tvPlot, plot, rlLess);
 
 //        collapse and expand plot summary on command
-        tvHide.setOnClickListener(view -> this.collapsePlot(tvPlot, plot, llMovieInfo, rlHide));
-        tvPlot.setOnClickListener(view -> this.expandPlot(tvPlot, plot, llMovieInfo, rlHide));
+        tvLess.setOnClickListener(view -> this.collapsePlot(tvPlot, plot, llMovieInfo, rlLess));
+        tvPlot.setOnClickListener(view -> this.expandPlot(tvPlot, plot, llMovieInfo, rlLess));
 
 //        open trailer modal dialog on command
         btnPlay = findViewById(R.id.btnPlay);
@@ -69,11 +69,11 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void setActorImages() {
-        images.add(R.drawable.gerard_butler);
-        images.add(R.drawable.morgan_freeman);
-        images.add(R.drawable.danny_huston);
-        images.add(R.drawable.piper_perabo);
-        images.add(R.drawable.nick_nolte);
+        images.add(R.drawable.thumbnail_actor_gerard_butler);
+        images.add(R.drawable.thumbnail_actor_morgan_freeman);
+        images.add(R.drawable.thumbnail_actor_danny_huston);
+        images.add(R.drawable.thumbnail_actor_piper_perabo);
+        images.add(R.drawable.thumbnail_actor_nick_nolte);
     }
 
     private void collapsePlotWithoutAnimation(TextView textView, String str, ViewGroup hideTriggerViewGroup) {

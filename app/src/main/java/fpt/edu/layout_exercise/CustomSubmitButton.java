@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 public class CustomSubmitButton extends LinearLayout {
 
-    private String text;
+    private CharSequence text;
     Button btnSubmit;
 
     public CustomSubmitButton(Context context, @Nullable AttributeSet attrs) {
@@ -18,7 +18,7 @@ public class CustomSubmitButton extends LinearLayout {
         setAttributes(attrs, context);
     }
 
-    public String getText() {
+    public CharSequence getText() {
         return text;
     }
 
@@ -29,15 +29,17 @@ public class CustomSubmitButton extends LinearLayout {
     }
 
     private void setAttributes(AttributeSet attrs, Context context) {
-        inflate(context, R.layout.custom_button_submit, this);
+        inflate(context, R.layout.button_submit_custom, this);
 
         TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.CustomSubmitButton, 0, 0);
         try {
-            text = typedArray.getString(R.styleable.CustomSubmitButton_text);
+            text = typedArray.getText(R.styleable.CustomSubmitButton_android_text);
             btnSubmit = findViewById(R.id.btnSubmit);
 
             if (text != null) {
                 btnSubmit.setText(text);
+            } else {
+                btnSubmit.setText(R.string.default_submit_button_text);
             }
         } finally {
             typedArray.recycle();

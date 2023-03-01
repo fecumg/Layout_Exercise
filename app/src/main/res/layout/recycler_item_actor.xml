@@ -17,6 +17,6 @@
             android:layout_height="80dp"
             android:background="@color/white"
             android:scaleType="centerCrop"
-            android:src="@drawable/gerard_butler" />
+            android:src="@drawable/thumbnail_actor_gerard_butler" />
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

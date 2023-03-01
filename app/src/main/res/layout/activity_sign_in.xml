@@ -23,7 +23,8 @@
         android:textColor="#7560e8"
         android:layout_below="@+id/tvTitle"/>
 
-    <include layout="@layout/form_sign_in"
+    <include
+        layout="@layout/component_form_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
@@ -37,7 +38,7 @@
         <fpt.edu.layout_exercise.CustomSubmitButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:text="Sign In"/>
+            android:text="Sign In"/>
 
         <TextView
             android:layout_width="match_parent"
